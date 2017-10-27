@@ -1,7 +1,7 @@
 # prember = Pre Render Ember
 
 
-This Ember addon allows you to pre-render any list of URLs into static HTML files *at build time*. It has no opinions about how you generate the list of URLs -- it can come from an arbitrary asynchronous function.
+This Ember addon allows you to pre-render any list of URLs into static HTML files *at build time*. It has no opinions about how you generate the list of URLs.
 
 ## Quick Start
 
