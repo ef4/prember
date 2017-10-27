@@ -101,7 +101,7 @@ The resulting application can be served entirely statically, like a normal Ember
 Your webserver needs to do two things correctly for this to work:
 
 1. It should use a file like `about/index.html` to respond to URLs like `/about`. This is a pretty normal default behavior.
-2. It should use `_empty.html` to respond to unknown URLs (aka 404s). In a normal Ember app, you would have configured `index.html` here instead, but we may have already overwritten `index.html` with content that only belongs on the homepage, not on every route. This is why `prember` gives you a separate `_empty.html` file with no prerendered content.
+2. It should use `_empty.html` to respond to unknown URLs (404s). In a normal Ember app, you would configure `index.html` here instead, but we may have already overwritten `index.html` with content that only belongs on the homepage, not on every route. This is why `prember` gives you a separate `_empty.html` file with no prerendered content.
 
 ## Options
 
