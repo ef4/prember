@@ -5,34 +5,23 @@ const Prerender = require('./lib/prerender');
 const BroccoliDebug = require('broccoli-debug');
 const Merge = require('broccoli-merge-trees');
 const debug = BroccoliDebug.buildDebugCallback(`prember`);
+const premberConfig = require('./lib/config');
 
 module.exports = {
   name: 'prember',
-  isDevelopingAddon() { return true; },
 
-  serverMiddleware({ app }) {
-    app.use((req, res, next) => {
-      console.log('my middleware', req.url, req.serveUrl);
-      next();
-    });
-  },
+  premberConfig,
 
   postprocessTree(type, tree) {
-    if (type !== 'all') {
+    let config = this.premberConfig();
+    if (type !== 'all' || !config.enabled) {
       return tree;
     }
-
-    let options = {
-      urls: [
-        '/',
-        '/vision/chapter-1'
-      ]
-    };
 
     return debug(
       new Merge([
         tree,
-        new Prerender(debug(tree, 'input'), options),
+        new Prerender(debug(tree, 'input'), this.premberConfig()),
       ], {
         overwrite: true
       }),

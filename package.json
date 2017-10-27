@@ -51,7 +51,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "after": ["ember-cli-fastboot"],
-    "before": ["broccoli-serve-files"]
+    "after": ["ember-cli-fastboot"]
   }
 }
