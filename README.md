@@ -1,26 +1,138 @@
-# prember = pre render ember
+# prember = Pre Render Ember
 
-This README outlines the details of collaborating on this Ember addon.
 
-## Installation
+This Ember addon allows you to pre-render any list of URLs into static HTML files *at build time*. It has no opinions about how you generate the list of URLs -- it can come from an arbitrary asynchronous function.
 
-* `git clone <repository-url>` this repository
-* `cd prember`
-* `yarn install`
+## Quick Start
 
-## Running
+Add these three packages to your app:
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+```sh
+ember install ember-cli-fastboot
+ember install prember
+ember install prember-middleware
+```
 
-## Running Tests
+And configure some URLs that you would like to prerender:
 
-* `yarn test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```
+// In ember-cli-build.js
+  let app = new EmberApp(defaults, {
+    prember: {
+      urls: [
+        '/',
+        '/about',
+        '/contact'
+      ]
+    }
+  });
+```
 
-## Building
+When you do `ember build --environment=production`, your built app will include fastboot-rendered HTML in the following files:
 
-* `ember build`
+```
+/index.html
+/about/index.html
+/contact/index.html
+```
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+## Explanation
+
+When you build a normal ember app (`ember build --environment=production`) you get a structure something like this:
+
+```
+dist/
+├── assets
+│   ├── my-app-0d31988c08747007cb982909a0b2c9db.css
+│   ├── my-app-bdaaa766a1077911a7dae138cbd9e39d.js
+│   ├── vendor-553c722f80bed2ea90c42b2c6a54238a.js
+│   └── vendor-9eda64f0de2569c64ba0d33f08940fbf.css
+├── crossdomain.xml
+├── index.html
+└── robots.txt
+```
+
+To serve this app to end users, you just need to configure a webserver to use `index.html` in response to *all* URLs (because the Ember app will boot and take care of the routing).
+
+If you add [ember-cli-fastboot](https://github.com/ember-fastboot/ember-cli-fastboot) to your app, it augments your build with a few things that are needed to run the app within node via [fastboot](https://github.com/ember-fastboot/fastboot):
+nn
+```
+dist/
+├── assets
+│   ├── assetMap.json
+│   ├── my-app-0d31988c08747007cb982909a0b2c9db.css
+│   ├── my-app-a72732b0d2468246920fa5401610caf4.js
+│   ├── my-app-fastboot-af717865dadf95003aaf6903aefcd125.js
+│   ├── vendor-553c722f80bed2ea90c42b2c6a54238a.js
+│   └── vendor-9eda64f0de2569c64ba0d33f08940fbf.css
+├── crossdomain.xml
+├── index.html
+├── package.json
+└── robots.txt
+```
+
+You can still serve the resulting app in the normal way, but to get the benefits of server-side rendering you would probably serve it from a fastboot server that knows how to combine the JS files and the `index.html` file and generate unique output per URL. The downside of this is that your fastboot server is now in the critical path, which is necessarily slower than serving static files.
+
+`prember` starts with an app that's already capable of running in fastboot and augments it further. You configure it with a source of URLs to prerender, and it visits each one *during the build process*, saving the resulting HTML to a file:
+
+```
+dist/
+├── _empty.html            <--------- A copy of the original index.html
+├── about
+│   └── index.html         <--------- Pre-rendered content
+├── assets
+│   ├── assetMap.json
+│   ├── my-app-0d31988c08747007cb982909a0b2c9db.css
+│   ├── my-app-a72732b0d2468246920fa5401610caf4.js
+│   ├── my-app-fastboot-af717865dadf95003aaf6903aefcd125.js
+│   ├── vendor-553c722f80bed2ea90c42b2c6a54238a.js
+│   └── vendor-9eda64f0de2569c64ba0d33f08940fbf.css
+├── contact
+│   └── index.html         <--------- Pre-rendered content
+├── crossdomain.xml
+├── index.html             <--------- Rewritten with pre-render content
+├── package.json
+└── robots.txt
+```
+
+The resulting application can be served entirely statically, like a normal Ember app. But it has the fast-first-paint and SEO benefits of a Fastboot-rendered application for all of the URLs that you pre-rendered.
+
+## Configuring Your Webserver
+
+Your webserver needs to do two things correctly for this to work:
+
+1. It should use a file like `about/index.html` to respond to URLs like `/about`. This is a pretty normal default behavior.
+2. It should use `_empty.html` to respond to unknown URLs (aka 404s). In a normal Ember app, you would have configured `index.html` here instead, but we may have already overwritten `index.html` with content that only belongs on the homepage, not on every route. This is why `prember` gives you a separate `_empty.html` file with no prerendered content.
+
+## Options
+
+You pass options to `prember` by setting them in ember-cli-build.js:
+
+```
+// In ember-cli-build.js
+  let app = new EmberApp(defaults, {
+    prember: {
+      urls: [
+        '/',
+        '/about',
+        '/contact'
+      ]
+    }
+  });
+```
+
+The supported options are:
+
+ - `urls`: this can be an array or a promise-returning function that resolves to an array. How you generate the list of URLs is up to you, there are many valid strategies.
+ - `enabled`: defaults to `environment === 'production'` so that `prember` only runs during production builds.
+ - `indexFile`: defaults to `index.html`. This is the name we will give to each of the files we create during pre-rendering.
+ - `emptyFile`: defaults to `_empty.html`. This is where we will put a copy of your empty `index.html` as it was before any pre-rendering.
+
+## Compared to other addons
+
+There are other ways to pre-render content:
+
+ - [ember-prerender](https://github.com/zipfworks/ember-prerender) depends on having a real browser to do prerendering, which is heavy and complex. It's old and unmaintained.
+ - [ember-cli-prerender](https://github.com/Motokaptia/ember-cli-prerender) uses Fastboot like we do, but it is not integrated with the build pipeline (so it's harder to make it Just Work™ with things like ember-cli-deploy) and it has stronger opinions about what URLs it will discover, including blueprint-driven sitemap configuration.
+ 
+ 
