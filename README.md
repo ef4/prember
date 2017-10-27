@@ -171,5 +171,6 @@ There are other ways to pre-render content:
 
  - [ember-prerender](https://github.com/zipfworks/ember-prerender) depends on having a real browser to do prerendering, which is heavy and complex. It's old and unmaintained.
  - [ember-cli-prerender](https://github.com/Motokaptia/ember-cli-prerender) uses Fastboot like we do, but it is not integrated with the build pipeline (so it's harder to make it Just Work™ with things like [ember-cli-deploy](http://ember-cli-deploy.com/)) and it has stronger opinions about what URLs it will discover, including blueprint-driven sitemap configuration.
+ - [ember-cli-staticboot](https://github.com/robwebdev/ember-cli-staticboot) is quite similar to this addon, and I didn't realize it existed before I started making this one. I do think `prember` does a better job of integrating the static build output with the existing ember app in a way that requires the minimal webserver configuration. 
  
  
