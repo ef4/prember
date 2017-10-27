@@ -124,8 +124,8 @@ The supported options are:
 
  - `urls`: this can be an array or a promise-returning function that resolves to an array. How you generate the list of URLs is up to you, there are many valid strategies.
  - `enabled`: defaults to `environment === 'production'` so that `prember` only runs during production builds.
- - `indexFile`: defaults to `index.html`. This is the name we will give to each of the files we create during pre-rendering.
- - `emptyFile`: defaults to `_empty.html`. This is where we will put a copy of your empty `index.html` as it was before any pre-rendering.
+ - `indexFile`: defaults to `"index.html"`. This is the name we will give to each of the files we create during pre-rendering.
+ - `emptyFile`: defaults to `"_empty.html"`. This is where we will put a copy of your empty `index.html` as it was before any pre-rendering.
 
 ## Using prember in development
 
@@ -156,6 +156,6 @@ prember: serving prerendered static HTML for /about       <--- served by prember
 There are other ways to pre-render content:
 
  - [ember-prerender](https://github.com/zipfworks/ember-prerender) depends on having a real browser to do prerendering, which is heavy and complex. It's old and unmaintained.
- - [ember-cli-prerender](https://github.com/Motokaptia/ember-cli-prerender) uses Fastboot like we do, but it is not integrated with the build pipeline (so it's harder to make it Just Work™ with things like ember-cli-deploy) and it has stronger opinions about what URLs it will discover, including blueprint-driven sitemap configuration.
+ - [ember-cli-prerender](https://github.com/Motokaptia/ember-cli-prerender) uses Fastboot like we do, but it is not integrated with the build pipeline (so it's harder to make it Just Work™ with things like [ember-cli-deploy](http://ember-cli-deploy.com/)) and it has stronger opinions about what URLs it will discover, including blueprint-driven sitemap configuration.
  
  
