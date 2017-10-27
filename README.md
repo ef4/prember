@@ -72,7 +72,7 @@ dist/
 
 You can still serve the resulting app in the normal way, but to get the benefits of server-side rendering you would probably serve it from a fastboot server that knows how to combine the JS files and the `index.html` file and generate unique output per URL. The downside of this is that your fastboot server is now in the critical path, which increases your ops complexity and is necessarily slower than serving static files.
 
-`prember` starts with an app that's already capable of running in fastboot and augments it further. You configure it with a source of URLs to prerender, and it visits each one *during the build process*, saving the resulting HTML to a file:
+`prember` starts with an app that's already capable of running in fastboot and augments it further. You configure it with a source of URLs to prerender, and it uses Fastboot to visit each one *during the build process*, saving the resulting HTML files:
 
 ```
 dist/
