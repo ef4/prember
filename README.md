@@ -5,12 +5,11 @@ This Ember addon allows you to pre-render any list of URLs into static HTML file
 
 ## Quick Start
 
-Add these three packages to your app:
+Add these packages to your app:
 
 ```sh
 ember install ember-cli-fastboot
 ember install prember
-ember install prember-middleware
 ```
 
 And configure some URLs that you would like to prerender:
@@ -52,10 +51,10 @@ dist/
 └── robots.txt
 ```
 
-To serve this app to end users, you just need to configure a webserver to use `index.html` in response to *all* URLs (because the Ember app will boot and take care of the routing).
+To serve this app to users, you just need to configure a webserver to use `index.html` in response to *all* URLs that don't otherwise have files (because the Ember app will boot and take care of the routing).
 
 If you add [ember-cli-fastboot](https://github.com/ember-fastboot/ember-cli-fastboot) to your app, it augments your build with a few things that are needed to run the app within node via [fastboot](https://github.com/ember-fastboot/fastboot):
-nn
+
 ```
 dist/
 ├── assets
@@ -90,7 +89,7 @@ dist/
 ├── contact
 │   └── index.html         <--------- Pre-rendered content
 ├── crossdomain.xml
-├── index.html             <--------- Rewritten with pre-render content
+├── index.html             <--------- Rewritten with pre-rendered content
 ├── package.json
 └── robots.txt
 ```
@@ -106,7 +105,7 @@ Your webserver needs to do two things correctly for this to work:
 
 ## Options
 
-You pass options to `prember` by setting them in ember-cli-build.js:
+You pass options to `prember` by setting them in `ember-cli-build.js`:
 
 ```
 // In ember-cli-build.js
@@ -128,7 +127,31 @@ The supported options are:
  - `indexFile`: defaults to `index.html`. This is the name we will give to each of the files we create during pre-rendering.
  - `emptyFile`: defaults to `_empty.html`. This is where we will put a copy of your empty `index.html` as it was before any pre-rendering.
 
-## Compared to other addons
+## Using prember in development
+
+In addition to the `enabled` option, you can temporarily turn `prember` on by setting the environment variable `PREMBER=true`, like:
+
+```sh
+PREMBER=true ember serve
+```
+
+**However**, by default ember-cli doesn't understand that it should use a file like `about/index.html` to respond to a URL like `/about`. So you should do:
+
+```sh
+ember install prember-middleware
+```
+
+It's harmless to keep prember-middleware permanently installed in your app, it has no impact on your production application.
+
+When running in development, you will see console output from ember-cli that distinguishes whether a given page was handled by prember vs handled on-the-fly by fastboot:
+
+```
+prember: serving prerendered static HTML for /about       <--- served by prember
+2017-10-27T05:25:02.161Z 200 OK /some-other-page          <--- served by fastboot
+```
+
+
+# Compared to other addons
 
 There are other ways to pre-render content:
 
