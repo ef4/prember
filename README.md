@@ -109,15 +109,15 @@ You pass options to `prember` by setting them in `ember-cli-build.js`:
 
 ```
 // In ember-cli-build.js
-  let app = new EmberApp(defaults, {
-    prember: {
-      urls: [
-        '/',
-        '/about',
-        '/contact'
-      ]
-    }
-  });
+let app = new EmberApp(defaults, {
+  prember: {
+    urls: [
+      '/',
+      '/about',
+      '/contact'
+    ]
+  }
+});
 ```
 
 The supported options are:
