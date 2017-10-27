@@ -150,6 +150,20 @@ prember: serving prerendered static HTML for /about       <--- served by prember
 2017-10-27T05:25:02.161Z 200 OK /some-other-page          <--- served by fastboot
 ```
 
+# Deployment
+
+You shouldn't need to do much special -- just make sure the html files get copied along with all your other files.
+
+If you're using `ember-cli-deploy-s3`, you just need to customize the `filePattern` setting so it includes `.html` files. For example:
+
+```js
+    ENV.s3 = {
+      bucket: 'cardstack.com',
+      region: 'us-east-1',
+      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,html}'
+      allowOverwrite: true
+    };
+```
 
 # Compared to other addons
 
