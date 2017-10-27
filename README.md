@@ -16,15 +16,15 @@ And configure some URLs that you would like to prerender:
 
 ```
 // In ember-cli-build.js
-  let app = new EmberApp(defaults, {
-    prember: {
-      urls: [
-        '/',
-        '/about',
-        '/contact'
-      ]
-    }
-  });
+let app = new EmberApp(defaults, {
+  prember: {
+    urls: [
+      '/',
+      '/about',
+      '/contact'
+    ]
+  }
+});
 ```
 
 When you do `ember build --environment=production`, your built app will include fastboot-rendered HTML in the following files:
