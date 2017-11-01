@@ -27,7 +27,6 @@
     "denodeify": "^1.2.1",
     "ember-cli-babel": "^6.6.0",
     "fastboot": "^1.1.0",
-    "heimdalljs-logger": "^0.1.7",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {

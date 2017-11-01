@@ -13,6 +13,7 @@ module.exports = {
   premberConfig,
 
   postprocessTree(type, tree) {
+    let ui = this.project.ui;
     let config = this.premberConfig();
     if (type !== 'all' || !config.enabled) {
       return tree;
@@ -21,7 +22,7 @@ module.exports = {
     return debug(
       new Merge([
         tree,
-        new Prerender(debug(tree, 'input'), this.premberConfig()),
+        new Prerender(debug(tree, 'input'), this.premberConfig(), ui),
       ], {
         overwrite: true
       }),
