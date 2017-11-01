@@ -1,24 +1,23 @@
 /* eslint-env node */
 'use strict';
 
-const Prerender = require('./lib/prerender');
-const BroccoliDebug = require('broccoli-debug');
-const Merge = require('broccoli-merge-trees');
-const debug = BroccoliDebug.buildDebugCallback(`prember`);
 const premberConfig = require('./lib/config');
 
 module.exports = {
   name: 'prember',
-
   premberConfig,
 
   postprocessTree(type, tree) {
-    let ui = this.project.ui;
     let config = this.premberConfig();
     if (type !== 'all' || !config.enabled) {
       return tree;
     }
 
+    let Prerender = require('./lib/prerender');
+    let BroccoliDebug = require('broccoli-debug');
+    let Merge = require('broccoli-merge-trees');
+    let debug = BroccoliDebug.buildDebugCallback(`prember`);
+    let ui = this.project.ui;
     return debug(
       new Merge([
         tree,
