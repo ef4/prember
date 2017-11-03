@@ -56,6 +56,9 @@
     "configPath": "tests/dummy/config",
     "after": [
       "ember-cli-fastboot"
+    ],
+    "before": [
+      "broccoli-asset-rev"
     ]
   }
 }
