@@ -17,7 +17,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each"
+    "test": "qunit node-tests"
   },
   "dependencies": {
     "broccoli-debug": "^0.6.3",
@@ -30,11 +30,14 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.5",
+    "broccoli-asset-rev": "https://github.com/ef4/broccoli-asset-rev#838f1b7186fde566d3e8010196c1f974423a4946",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.16.2",
     "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-document-title": "^0.3.3",
     "ember-cli-eslint": "^4.0.0",
+    "ember-cli-fastboot": "https://github.com/ef4/ember-cli-fastboot#48b94151e373bc33bcc3ad737a1e3e2a7e4ed8da",
+    "ember-cli-head": "^0.4.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
@@ -47,7 +50,9 @@
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.16.0",
-    "loader.js": "^4.2.3"
+    "jsdom": "^11.5.1",
+    "loader.js": "^4.2.3",
+    "qunitjs": "^2.4.1"
   },
   "engines": {
     "node": "6.* || >= 7.*"
