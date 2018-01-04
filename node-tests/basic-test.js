@@ -35,4 +35,16 @@ Qmodule('Prember', function(hooks) {
     assert.equal(doc.querySelector('title').textContent, "Document Title from Index Route");
   })
 
+  test('the URL discovery function can crawl the running app', function(assert) {
+    // this test is relying on configuration in our ember-cli-build.js
+    let doc = findDocument('discovered/index.html');
+    assert.equal(doc.querySelector('h1').textContent, "Discovered");
+  })
+
+  test('the URL discovery function can inspect the app build output', function(assert) {
+    // this test is relying on configuration in our ember-cli-build.js
+    let doc = findDocument('from-sample-data/index.html');
+    assert.equal(doc.querySelector('h1').textContent, "From Sample Data");
+  })
+
 });

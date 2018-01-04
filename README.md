@@ -122,10 +122,24 @@ let app = new EmberApp(defaults, {
 
 The supported options are:
 
- - `urls`: this can be an array or a promise-returning function that resolves to an array. How you generate the list of URLs is up to you, there are many valid strategies.
+ - `urls`: this can be an array or a promise-returning function that resolves to an array. How you generate the list of URLs is up to you, there are many valid strategies. See next section about using a custom url discovery function.
  - `enabled`: defaults to `environment === 'production'` so that `prember` only runs during production builds.
  - `indexFile`: defaults to `"index.html"`. This is the name we will give to each of the files we create during pre-rendering.
  - `emptyFile`: defaults to `"_empty.html"`. This is where we will put a copy of your empty `index.html` as it was before any pre-rendering.
+
+## Using a custom URL discovery function
+
+If you pass a function as the `urls` option, prember will invoke it like:
+
+```js
+let listOfUrls = await yourUrlFunction(distDir, visit);
+```
+
+`distDir` is the directory containing your built application. This allows your function to inspect the build output to discover URLs.
+
+`visit` is an asynchronous function that takes a URL string and resolves to a response from a running fastboot server. This lets your function crawl the running application to discover URLs.
+
+For an example of both these strategies in action, see `./tests/dummy/lib/url-tester.js` in this repo's test suite.
 
 ## Using prember in development
 

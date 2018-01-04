@@ -2,6 +2,7 @@
 'use strict';
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const urls = require('./tests/dummy/lib/url-tester');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
@@ -12,9 +13,7 @@ module.exports = function(defaults) {
     // README.
     prember: {
       enabled: true,
-      urls: [
-        '/'
-      ]
+      urls
     }
   });
 

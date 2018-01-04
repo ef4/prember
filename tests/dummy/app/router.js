@@ -16,6 +16,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('discovered');
+  this.route('from-sample-data');
 });
 
 export default Router;
