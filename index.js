@@ -18,10 +18,12 @@ module.exports = {
     let Merge = require('broccoli-merge-trees');
     let debug = BroccoliDebug.buildDebugCallback(`prember`);
     let ui = this.project.ui;
+    let plugins = loadPremberPlugins(this);
+
     return debug(
       new Merge([
         tree,
-        new Prerender(debug(tree, 'input'), this.premberConfig(), ui),
+        new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins),
       ], {
         overwrite: true
       }),
@@ -29,3 +31,12 @@ module.exports = {
     );
   }
 };
+
+function loadPremberPlugins(context) {
+  let addons = context.project.addons || [];
+
+  return addons
+    .filter((addon) => addon.pkg.keywords.includes('prember-plugin'))
+    .filter((addon) => typeof addon.urlsForPrember === 'function')
+    .map((addon) => addon.urlsForPrember.bind(addon));
+}
