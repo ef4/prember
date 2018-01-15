@@ -164,6 +164,16 @@ prember: serving prerendered static HTML for /about       <--- served by prember
 2017-10-27T05:25:02.161Z 200 OK /some-other-page          <--- served by fastboot
 ```
 
+## Using prember from an addon
+
+Addon authors may declare urls for prember during compilation. To do so, you will want to:
+
+- Add `prember-plugin` to your addon's package.json `keywords` array;
+    - Consider also using package.json's `ember-addon` object to configure your addon to run `before: 'prember'`
+- Define a `urlsForPrember(distDir, visit)` function in your addon's main file;
+    - This function shares an interface with the "custom URL discovery" function, as defined above; and
+- Advise your addon's users to install & configure `prember` in the host application.
+
 # Deployment
 
 You shouldn't need to do much special -- just make sure the html files get copied along with all your other files.
