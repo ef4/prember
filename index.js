@@ -23,12 +23,16 @@ module.exports = {
     return debug(
       new Merge([
         tree,
-        new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins),
+        new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins, this._rootURL),
       ], {
         overwrite: true
       }),
       'output'
     );
+  },
+
+  config: function(env, baseConfig) {
+    this._rootURL = baseConfig.rootURL;
   }
 };
 

@@ -19,6 +19,7 @@ Router.map(function() {
   this.route('discovered');
   this.route('from-sample-data');
   this.route('use-static-asset');
+  this.route('redirects');
 });
 
 export default Router;

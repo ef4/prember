@@ -53,4 +53,16 @@ Qmodule('Prember', function(hooks) {
     assert.equal(doc.querySelector('.message').textContent, "This is from static json");
   })
 
+  test('redirects via meta http-eqiv refresh', function(assert) {
+    // this test is relying on configuration in our ember-cli-build.js
+    let doc = findDocument('redirects/index.html');
+    assert.equal(doc.querySelector('meta[http-equiv=refresh]').getAttribute('url'), "/from-sample-data");
+  })
+
+  test('redirects have rel canonical', function(assert) {
+    // this test is relying on configuration in our ember-cli-build.js
+    let doc = findDocument('redirects/index.html');
+    assert.equal(doc.querySelector('link[rel=canonical]').getAttribute('href'), "/from-sample-data");
+  })
+
 });
