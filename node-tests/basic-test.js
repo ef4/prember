@@ -47,4 +47,10 @@ Qmodule('Prember', function(hooks) {
     assert.equal(doc.querySelector('h1').textContent, "From Sample Data");
   })
 
+  test('fastboot-rendered routes have access to static assets', function(assert) {
+    // this test is relying on configuration in our ember-cli-build.js
+    let doc = findDocument('use-static-asset/index.html');
+    assert.equal(doc.querySelector('.message').textContent, "This is from static json");
+  })
+
 });

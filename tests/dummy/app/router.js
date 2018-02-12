@@ -18,6 +18,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('discovered');
   this.route('from-sample-data');
+  this.route('use-static-asset');
 });
 
 export default Router;
