@@ -2939,22 +2939,22 @@ fastboot-express-middleware@^1.1.0:
     fastboot "^1.1.2"
     request "^2.81.0"
 
-fastboot@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/fastboot/-/fastboot-1.1.0.tgz#a15338220268f6c08282a76107bc3265a21bd233"
+fastboot@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/fastboot/-/fastboot-1.1.2.tgz#1cb4b6423aacc4339fbf003cc7b6ecabd3083dfa"
   dependencies:
     chalk "^2.0.1"
     cookie "^0.3.1"
     debug "^3.0.0"
     exists-sync "0.0.4"
     najax "^1.0.2"
-    rsvp "^3.0.16"
+    rsvp "^4.7.0"
     simple-dom "^1.0.0"
-    source-map-support "^0.4.18"
+    source-map-support "^0.5.0"
 
-fastboot@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/fastboot/-/fastboot-1.1.2.tgz#1cb4b6423aacc4339fbf003cc7b6ecabd3083dfa"
+fastboot@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/fastboot/-/fastboot-1.1.3.tgz#56c5f56415c5ae8de2db539c0d3ecbcd65538f8b"
   dependencies:
     chalk "^2.0.1"
     cookie "^0.3.1"
@@ -5538,7 +5538,7 @@ source-map-support@^0.2.10:
   dependencies:
     source-map "0.1.32"
 
-source-map-support@^0.4.15, source-map-support@^0.4.18:
+source-map-support@^0.4.15:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
   dependencies:
