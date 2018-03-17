@@ -1,4 +1,3 @@
-/* eslint-env node */
 'use strict';
 
 const premberConfig = require('./lib/config');
