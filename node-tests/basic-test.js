@@ -54,7 +54,7 @@ Qmodule('Prember', function(hooks) {
   test('redirects via meta http-eqiv refresh', function(assert) {
     // this test is relying on configuration in our ember-cli-build.js
     let doc = findDocument('redirects/index.html');
-    assert.equal(doc.querySelector('meta[http-equiv=refresh]').getAttribute('url'), "/from-sample-data");
+    assert.equal(doc.querySelector('meta[http-equiv=refresh]').getAttribute('content'), "0;url=/from-sample-data");
   })
 
   test('redirects have rel canonical', function(assert) {
