@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const { execFileSync } = require('child_process');
 const { module: Qmodule, test } = require('qunitjs');
 const jsdom = require("jsdom");

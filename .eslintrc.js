@@ -24,7 +24,8 @@ module.exports = {
         'testem.js',
         'ember-cli-build.js',
         'config/**/*.js',
-        'tests/dummy/config/**/*.js'
+        'tests/dummy/config/**/*.js',
+        'node-tests/**/*.js'
       ],
       excludedFiles: [
         'app/**',
@@ -33,7 +34,7 @@ module.exports = {
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2017
       },
       env: {
         browser: false,

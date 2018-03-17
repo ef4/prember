@@ -139,7 +139,7 @@ let listOfUrls = await yourUrlFunction(distDir, visit);
 
 `visit` is an asynchronous function that takes a URL string and resolves to a response from a running fastboot server. This lets your function crawl the running application to discover URLs.
 
-For an example of both these strategies in action, see `./tests/dummy/lib/url-tester.js` in this repo's test suite.
+For an example of both these strategies in action, see `./node-tests/url-tester.js` in this repo's test suite.
 
 ## Using prember in development
 

@@ -1,4 +1,3 @@
-/* eslint-env node */
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
