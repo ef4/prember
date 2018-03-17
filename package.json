@@ -68,6 +68,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
+    "before": [
+      "ember-service-worker",
+      "ember-service-worker-prember"
+    ],
     "after": [
       "ember-cli-fastboot"
     ]
