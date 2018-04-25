@@ -1,7 +1,7 @@
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-module.exports = async function(distDir, visit) {
+module.exports = async function({ distDir, visit }) {
   let urls = ['/', '/redirects', '/use-static-asset'];
 
   // Here we exercise the ability to make requests against the

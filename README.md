@@ -132,7 +132,7 @@ The supported options are:
 If you pass a function as the `urls` option, prember will invoke it like:
 
 ```js
-let listOfUrls = await yourUrlFunction(distDir, visit);
+let listOfUrls = await yourUrlFunction({ distDir, visit });
 ```
 
 `distDir` is the directory containing your built application. This allows your function to inspect the build output to discover URLs.
