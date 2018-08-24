@@ -20,6 +20,7 @@ Router.map(function() {
   this.route('from-sample-data');
   this.route('use-static-asset');
   this.route('redirects');
+  this.route('globals');
 });
 
 export default Router;

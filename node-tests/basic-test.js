@@ -63,4 +63,10 @@ Qmodule('Prember', function(hooks) {
     assert.equal(doc.querySelector('link[rel=canonical]').getAttribute('href'), "/from-sample-data");
   })
 
+  test('injects globals variables', function(assert) {
+    // this test is relying on configuration in our ember-cli-build.js
+    let doc = findDocument('globals/index.html');
+    assert.equal(doc.querySelector('span').textContent, "Global variable foo is bar");
+  })
+
 });

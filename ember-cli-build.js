@@ -12,7 +12,8 @@ module.exports = function(defaults) {
     // README.
     prember: {
       enabled: true,
-      urls
+      urls,
+      globals: { foo: 'bar' }
     }
   });
 
