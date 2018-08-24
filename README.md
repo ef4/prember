@@ -126,6 +126,7 @@ The supported options are:
  - `enabled`: defaults to `environment === 'production'` so that `prember` only runs during production builds.
  - `indexFile`: defaults to `"index.html"`. This is the name we will give to each of the files we create during pre-rendering.
  - `emptyFile`: defaults to `"_empty.html"`. This is where we will put a copy of your empty `index.html` as it was before any pre-rendering.
+ - `globals`: an optional map of key value pairs to expose in the Fastboot sandbox, allowing the application to define global variables to be used when pre-rendering pages.  This is useful for libraries that require a polyfill to work properly during pre-rendering.
 
 ## Using a custom URL discovery function
 
