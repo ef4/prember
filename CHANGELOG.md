@@ -1,3 +1,8 @@
+# 1.0.1
+
+BUGFIX: shutdown express server after build (thanks @astronomersiva)
+BUGFIX: Add protocol to fastboot requests for improved compatibility (thanks @xg-wang)
+
 # 1.0.0
 
 BREAKING: we now require ember-cli-fastboot >= 2.0.0, and if you're using broccoli-asset-rev it should be >= 2.7.0. This is to fix the order in which these run relative to prember, so that all asset links will get correct handling.
