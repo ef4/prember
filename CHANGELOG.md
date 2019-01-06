@@ -1,3 +1,7 @@
+# 1.0.2
+
+BUGFIX: the protocol bugfix in 1.0.1 was not quite right and caused a regresion.
+
 # 1.0.1
 
 BUGFIX: shutdown express server after build (thanks @astronomersiva)
