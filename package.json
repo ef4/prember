@@ -69,7 +69,8 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "after": [
-      "ember-cli-fastboot"
+      "ember-cli-fastboot",
+      "ember-engines"
     ],
     "before": [
       "broccoli-asset-rev"
