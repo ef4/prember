@@ -12,7 +12,6 @@ const Router = EmberRouter.extend({
   setTitle(title) {
     this.get('headData').set('title', title);
   }
-
 });
 
 Router.map(function() {
