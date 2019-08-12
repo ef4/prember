@@ -1,5 +1,9 @@
 'use strict';
 
+const BroccoliDebug = require('broccoli-debug');
+const BroccoliMergeTrees = require('broccoli-merge-trees');
+
+const Prerender = require('./lib/prerender');
 const premberConfig = require('./lib/config');
 
 module.exports = {
@@ -8,19 +12,17 @@ module.exports = {
 
   postprocessTree(type, tree) {
     let config = this.premberConfig();
+
     if (type !== 'all' || !config.enabled) {
       return tree;
     }
 
-    let Prerender = require('./lib/prerender');
-    let BroccoliDebug = require('broccoli-debug');
-    let Merge = require('broccoli-merge-trees');
     let debug = BroccoliDebug.buildDebugCallback(`prember`);
     let ui = this.project.ui;
     let plugins = loadPremberPlugins(this);
 
     return debug(
-      new Merge([
+      new BroccoliMergeTrees([
         tree,
         new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins, this._rootURL),
       ], {
