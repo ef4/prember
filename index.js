@@ -40,6 +40,13 @@ function loadPremberPlugins(context) {
 
   return addons
     .filter((addon) => addon.pkg.keywords.includes('prember-plugin'))
-    .filter((addon) => typeof addon.urlsForPrember === 'function')
-    .map((addon) => addon.urlsForPrember.bind(addon));
+    .filter((addon) => {
+      return typeof addon.urlsForPrember === 'function' || typeof addon.urlsFromPrember === 'function'
+    })
+    .map((addon) => {
+      return {
+        urlsForPrember: addon.urlsForPrember.bind(addon),
+        urlsFromPrember: addon.urlsFromPrember.bind(addon)
+      }
+    });
 }
