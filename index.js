@@ -44,9 +44,16 @@ function loadPremberPlugins(context) {
       return typeof addon.urlsForPrember === 'function' || typeof addon.urlsFromPrember === 'function'
     })
     .map((addon) => {
-      return {
-        urlsForPrember: addon.urlsForPrember.bind(addon),
-        urlsFromPrember: addon.urlsFromPrember.bind(addon)
+      const premberPlugin = {};
+
+      if(addon.urlsForPrember){
+        premberPlugin.urlsForPrember = addon.urlsForPrember.bind(addon);
       }
+
+      if(addon.urlsFromPrember){
+        premberPlugin.urlsFromPrember = addon.urlsFromPrember.bind(addon);
+      }
+
+      return premberPlugin;
     });
 }
