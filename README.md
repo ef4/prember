@@ -1,7 +1,20 @@
 # prember = Pre Render Ember
 
+A **progressive static-site generator** for Ember
+
 
 This Ember addon allows you to pre-render any list of URLs into static HTML files *at build time*. It has no opinions about how you generate the list of URLs.
+
+## Features
+
+- 💯100% Ember
+- 🚀 [Blazing](https://runspired.com/2018/06/03/ember-in-2018-part-2/) optimized for speed.
+- 🚚 Data Agnostic. Supply your site with data from anywhere, however you want!
+- 💥 Instant navigation and page views
+- ☔️ Progressively Enhanced and mobile-ready
+- 🎯 SEO Friendly.
+- 🥇 Ember-centric developer experience.
+- 😌 Painless project setup & migration.
 
 ## Quick Start
 
