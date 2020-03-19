@@ -179,12 +179,20 @@ prember: serving prerendered static HTML for /about       <--- served by prember
 
 ## Using prember from an addon
 
-Addon authors may declare urls for prember during compilation. To do so, you will want to:
+Addon authors may declare urls *for* prember during compilation. To do so, you will want to:
 
 - Add `prember-plugin` to your addon's package.json `keywords` array;
     - Consider also using package.json's `ember-addon` object to configure your addon to run `before: 'prember'`
 - Define a `urlsForPrember(distDir, visit)` function in your addon's main file;
     - This function shares an interface with the "custom URL discovery" function, as defined above; and
+- Advise your addon's users to install & configure `prember` in the host application.
+
+Addon authors may also get access to urls *from* prember. To do so, you will want to:
+
+- Add `prember-plugin` to your addon's package.json `keywords` array;
+    - Consider also using package.json's `ember-addon` object to configure your addon to run `before: 'prember'`
+- Define a `urlsFromPrember(urls)` function in your addon's main file;
+    - This function will receive the array of urls prember knows about as the only argument; and
 - Advise your addon's users to install & configure `prember` in the host application.
 
 # Deployment

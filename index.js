@@ -40,6 +40,20 @@ function loadPremberPlugins(context) {
 
   return addons
     .filter((addon) => addon.pkg.keywords.includes('prember-plugin'))
-    .filter((addon) => typeof addon.urlsForPrember === 'function')
-    .map((addon) => addon.urlsForPrember.bind(addon));
+    .filter((addon) => {
+      return typeof addon.urlsForPrember === 'function' || typeof addon.urlsFromPrember === 'function'
+    })
+    .map((addon) => {
+      const premberPlugin = {};
+
+      if(addon.urlsForPrember){
+        premberPlugin.urlsForPrember = addon.urlsForPrember.bind(addon);
+      }
+
+      if(addon.urlsFromPrember){
+        premberPlugin.urlsFromPrember = addon.urlsFromPrember.bind(addon);
+      }
+
+      return premberPlugin;
+    });
 }
