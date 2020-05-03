@@ -1,3 +1,7 @@
+# 1.0.4
+
+ENHANCEMENT: Allow passing urls from prember
+
 # 1.0.3
 
 ENHANCEMENT: support to ember-engines out of the box
