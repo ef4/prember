@@ -1,3 +1,8 @@
+# 1.0.5 / 2020-07-01
+==================
+
+BUGFIX: use rootUrl for static files #57 from @mansona
+
 # 1.0.4
 
 ENHANCEMENT: Allow passing urls from prember
