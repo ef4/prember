@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+  pull_request:
+  schedule:
+    - cron:  '0 8 * * 1' # Mondays at 8am
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test
+
+  test-no-lock:
+    name: Floating Dependencies
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
+      - name: Test
+        run: yarn test
+
+  test-try:
+    name: Additional Tests
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    strategy:
+      matrix:
+        scenario:
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-release
+          - ember-beta
+          - ember-canary
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+      - name: Test
+        run: yarn ember try:one ${{ matrix.scenario }}
