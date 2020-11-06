@@ -1,19 +1,21 @@
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'dummy/config/environment';
 import { inject } from '@ember/service';
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL,
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
 
   // This implements is the standard instructions from ember-cli-document-title
   // for making it play nicely with ember-cli-head
-  headData: inject(),
+  @inject()
+  headData;
+
   setTitle(title) {
-    this.get('headData').set('title', title);
+    this.headData.set('title', title);
   }
 
-});
+}
 
 Router.map(function() {
   this.route('discovered');
@@ -21,5 +23,3 @@ Router.map(function() {
   this.route('use-static-asset');
   this.route('redirects');
 });
-
-export default Router;

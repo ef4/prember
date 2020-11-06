@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
 sudo: false
 
@@ -16,5 +16,6 @@ install:
   - yarn install --no-lockfile --non-interactive --ignore-engines
 
 script:
+  - yarn lint
   - yarn test
 

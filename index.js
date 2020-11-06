@@ -3,7 +3,7 @@
 const premberConfig = require('./lib/config');
 
 module.exports = {
-  name: 'prember',
+  name: require('./package').name,
   premberConfig,
 
   postprocessTree(type, tree) {

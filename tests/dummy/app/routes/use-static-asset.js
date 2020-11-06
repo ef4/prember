@@ -7,8 +7,8 @@ export default Route.extend({
 
   async model() {
     let url;
-    if (this.get('fastboot.isFastBoot')) {
-      url = `http://${this.get('fastboot.request.host')}/static.json`;
+    if (this.fastboot.isFastBoot) {
+      url = `http://${this.fastboot.request.host}/static.json`;
     } else {
       url = '/static.json';
     }

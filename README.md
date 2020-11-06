@@ -219,3 +219,13 @@ There are other ways to pre-render content:
  - [ember-cli-staticboot](https://github.com/robwebdev/ember-cli-staticboot) is quite similar to this addon, and I didn't realize it existed before I started making this one. I do think `prember` does a better job of integrating the static build output with the existing ember app in a way that requires the minimal webserver configuration. 
  
  
+ Contributing
+ ------------------------------------------------------------------------------
+ 
+ See the [Contributing](CONTRIBUTING.md) guide for details.
+ 
+ 
+ License
+ ------------------------------------------------------------------------------
+ 
+ This project is licensed under the [MIT License](LICENSE.md).
