@@ -29,7 +29,7 @@
     "denodeify": "^1.2.1",
     "ember-cli-babel": "^7.22.1",
     "express": "^4.16.2",
-    "fastboot": "^3.1.2",
+    "fastboot": "http://gitpkg.now.sh/ember-fastboot/ember-cli-fastboot/packages/fastboot?rehydrate-config",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "ember-cli": "~3.22.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-document-title-northm": "^1.0.3",
-    "ember-cli-fastboot": "^3.0.0-beta.2",
+    "ember-cli-fastboot": "http://gitpkg.now.sh/ember-fastboot/ember-cli-fastboot/packages/ember-cli-fastboot?rehydrate-config",
     "ember-cli-head": "^0.4.0",
     "ember-cli-htmlbars": "^5.3.1",
     "ember-cli-inject-live-reload": "^2.0.2",
