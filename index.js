@@ -22,7 +22,7 @@ module.exports = {
     return debug(
       new Merge([
         tree,
-        new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins, this._rootURL),
+        new Prerender(debug(tree, 'input'), config, ui, plugins, this._rootURL),
       ], {
         overwrite: true
       }),
