@@ -59,7 +59,6 @@ dist/
 │   ├── my-app-bdaaa766a1077911a7dae138cbd9e39d.js
 │   ├── vendor-553c722f80bed2ea90c42b2c6a54238a.js
 │   └── vendor-9eda64f0de2569c64ba0d33f08940fbf.css
-├── crossdomain.xml
 ├── index.html
 └── robots.txt
 ```
@@ -77,7 +76,6 @@ dist/
 │   ├── my-app-fastboot-af717865dadf95003aaf6903aefcd125.js
 │   ├── vendor-553c722f80bed2ea90c42b2c6a54238a.js
 │   └── vendor-9eda64f0de2569c64ba0d33f08940fbf.css
-├── crossdomain.xml
 ├── index.html
 ├── package.json
 └── robots.txt
@@ -101,7 +99,6 @@ dist/
 │   └── vendor-9eda64f0de2569c64ba0d33f08940fbf.css
 ├── contact
 │   └── index.html         <--------- Pre-rendered content
-├── crossdomain.xml
 ├── index.html             <--------- Rewritten with pre-rendered content
 ├── package.json
 └── robots.txt
