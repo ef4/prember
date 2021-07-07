@@ -2,7 +2,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 module.exports = async function({ distDir, visit }) {
-  let urls = ['/', '/redirects', '/use-static-asset'];
+  let urls = ['/', '/redirects', '/use-static-asset', '/globals'];
 
   // Here we exercise the ability to make requests against the
   // fastboot app in order to discover more urls
