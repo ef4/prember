@@ -16,5 +16,12 @@ module.exports = function(defaults) {
     }
   });
 
-  return app.toTree();
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  const appTree = maybeEmbroider(app);
+
+  if ('@embroider/core' in app.dependencies()) {
+    return require('./index').prerender(app, appTree);
+  } else {
+    return appTree;
+  }
 };

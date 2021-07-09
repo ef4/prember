@@ -7,8 +7,31 @@ module.exports = {
   premberConfig,
 
   postprocessTree(type, tree) {
+    if (type !== 'all') {
+      return tree;
+    }
+
+    return this._prerenderTree(tree);
+  },
+
+  /**
+   * This function is *not* called by ember-cli directly, but supposed to be imported by an app to wrap the app's
+   * tree, to add the prerendered HTML files. This workaround is currently needed for Embroider-based builds that
+   * don't support the `postprocessTree('all', tree)` hook used here.
+   */
+  prerender(app, tree) {
+    let premberAddon = app.project.addons.find(({ name }) => name === 'prember');
+
+    if (!premberAddon) {
+      throw new Error('Could not find initialized prember addon. It must be part of your app\'s dependencies!');
+    }
+
+    return premberAddon._prerenderTree(tree);
+  },
+
+  _prerenderTree(tree) {
     let config = this.premberConfig();
-    if (type !== 'all' || !config.enabled) {
+    if (!config.enabled) {
       return tree;
     }
 
@@ -22,7 +45,7 @@ module.exports = {
     return debug(
       new Merge([
         tree,
-        new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins, this._rootURL),
+        new Prerender(debug(tree, 'input'), config, ui, plugins, this._rootURL),
       ], {
         overwrite: true
       }),
