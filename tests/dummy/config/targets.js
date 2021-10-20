@@ -23,4 +23,5 @@ const browsers = [
 
 module.exports = {
   browsers,
+  node: true,
 };
