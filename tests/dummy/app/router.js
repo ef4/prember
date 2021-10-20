@@ -14,10 +14,9 @@ export default class Router extends EmberRouter {
   setTitle(title) {
     this.headData.set('title', title);
   }
-
 }
 
-Router.map(function() {
+Router.map(function () {
   this.route('discovered');
   this.route('from-sample-data');
   this.route('use-static-asset');

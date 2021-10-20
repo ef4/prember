@@ -1,9 +1,10 @@
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
-  fastboot: inject(),
+export default class UseStaticAssetRoute extends Route {
+  @service
+  fastboot;
 
   async model() {
     let url;
@@ -16,4 +17,4 @@ export default Route.extend({
     let json = await response.json();
     return json;
   }
-});
+}

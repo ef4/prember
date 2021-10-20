@@ -1,10 +1,13 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
-  headData: inject(),
-  title: 'Document Title from Index Route',
+export default class IndexRoute extends Route {
+  @service
+  headData;
+
+  title = 'Document Title from Index Route';
+
   afterModel() {
-    this.set('headData.description', 'OG Description from Index Route');
+    this.headData.description = 'OG Description from Index Route';
   }
-});
+}
