@@ -33,11 +33,11 @@ Qmodule('Prember', function (hooks) {
     );
   });
 
-  test('it works with ember-cli-document-title', function (assert) {
+  test('it works with ember-page-title', function (assert) {
     let doc = findDocument('index.html');
     assert.equal(
       doc.querySelector('title').textContent,
-      'Document Title from Index Route'
+      'Document Title from page-title'
     );
   });
 

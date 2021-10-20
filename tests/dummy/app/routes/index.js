@@ -5,8 +5,6 @@ export default class IndexRoute extends Route {
   @service
   headData;
 
-  title = 'Document Title from Index Route';
-
   afterModel() {
     this.headData.description = 'OG Description from Index Route';
   }
