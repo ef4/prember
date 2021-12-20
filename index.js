@@ -20,19 +20,28 @@ module.exports = {
     let plugins = loadPremberPlugins(this);
 
     return debug(
-      new Merge([
-        tree,
-        new Prerender(debug(tree, 'input'), this.premberConfig(), ui, plugins, this._rootURL),
-      ], {
-        overwrite: true
-      }),
+      new Merge(
+        [
+          tree,
+          new Prerender(
+            debug(tree, 'input'),
+            this.premberConfig(),
+            ui,
+            plugins,
+            this._rootURL
+          ),
+        ],
+        {
+          overwrite: true,
+        }
+      ),
       'output'
     );
   },
 
-  config: function(env, baseConfig) {
+  config: function (env, baseConfig) {
     this._rootURL = baseConfig.rootURL;
-  }
+  },
 };
 
 function loadPremberPlugins(context) {
@@ -41,16 +50,19 @@ function loadPremberPlugins(context) {
   return addons
     .filter((addon) => addon.pkg.keywords.includes('prember-plugin'))
     .filter((addon) => {
-      return typeof addon.urlsForPrember === 'function' || typeof addon.urlsFromPrember === 'function'
+      return (
+        typeof addon.urlsForPrember === 'function' ||
+        typeof addon.urlsFromPrember === 'function'
+      );
     })
     .map((addon) => {
       const premberPlugin = {};
 
-      if(addon.urlsForPrember){
+      if (addon.urlsForPrember) {
         premberPlugin.urlsForPrember = addon.urlsForPrember.bind(addon);
       }
 
-      if(addon.urlsFromPrember){
+      if (addon.urlsFromPrember) {
         premberPlugin.urlsFromPrember = addon.urlsFromPrember.bind(addon);
       }
 
