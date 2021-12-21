@@ -20,10 +20,14 @@ module.exports = {
    * don't support the `postprocessTree('all', tree)` hook used here.
    */
   prerender(app, tree) {
-    let premberAddon = app.project.addons.find(({ name }) => name === 'prember');
+    let premberAddon = app.project.addons.find(
+      ({ name }) => name === 'prember'
+    );
 
     if (!premberAddon) {
-      throw new Error('Could not find initialized prember addon. It must be part of your app\'s dependencies!');
+      throw new Error(
+        "Could not find initialized prember addon. It must be part of your app's dependencies!"
+      );
     }
 
     return premberAddon._prerenderTree(tree);
@@ -43,12 +47,21 @@ module.exports = {
     let plugins = loadPremberPlugins(this);
 
     return debug(
-      new Merge([
-        tree,
-        new Prerender(debug(tree, 'input'), config, ui, plugins, this._rootURL),
-      ], {
-        overwrite: true
-      }),
+      new Merge(
+        [
+          tree,
+          new Prerender(
+            debug(tree, 'input'),
+            config,
+            ui,
+            plugins,
+            this._rootURL
+          ),
+        ],
+        {
+          overwrite: true,
+        }
+      ),
       'output'
     );
   },
