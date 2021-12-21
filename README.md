@@ -15,6 +15,7 @@ This Ember addon allows you to pre-render any list of URLs into static HTML file
 - 🎯 SEO Friendly.
 - 🥇 Ember-centric developer experience.
 - 😌 Painless project setup & migration.
+- 📦 Embroider support
 
 ## Quick Start
 
@@ -191,6 +192,29 @@ Addon authors may also get access to urls *from* prember. To do so, you will wan
 - Define a `urlsFromPrember(urls)` function in your addon's main file;
     - This function will receive the array of urls prember knows about as the only argument; and
 - Advise your addon's users to install & configure `prember` in the host application.
+
+## Using prember with Embroider
+
+You can use prember in an Embroider-based build, however you must apply some changes to your `ember-cli-build.js` for it to work. 
+Embroider does not support the `postprocessTree` (type `all`) hook that this addon uses to *implicitly* hook into the build pipeline.
+But it exposes a `prerender` function to do so *explicitly*. 
+
+In a typical Embroider setup, your `ember-cli-build.js` will look like this:
+
+```js
+const { Webpack } = require('@embroider/webpack');
+return require('@embroider/compat').compatBuild(app, Webpack);
+```
+
+For prember to add its prerendered HTML pages on top of what Embroider already emitted, wrap the compiled output with the `prerender` function like this:
+
+```diff
+const { Webpack } = require('@embroider/webpack');
+- return require('@embroider/compat').compatBuild(app, Webpack);
++ const compiledApp = require('@embroider/compat').compatBuild(app, Webpack);
++ 
++ return require('prember').prerender(app, compiledApp);
+```
 
 # Deployment
 
