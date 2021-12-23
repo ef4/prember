@@ -16,11 +16,17 @@ module.exports = function (defaults) {
   });
 
   const { maybeEmbroider } = require('@embroider/test-setup');
-  return maybeEmbroider(app, {
+  const appTree = maybeEmbroider(app, {
     skipBabel: [
       {
         package: 'qunit',
       },
     ],
   });
+
+  if ('@embroider/core' in app.dependencies()) {
+    return require('./index').prerender(app, appTree);
+  } else {
+    return appTree;
+  }
 };
