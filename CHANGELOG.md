@@ -1,3 +1,7 @@
+# 1.1.0 / 2021-12-23
+
+ENHANCEMENT: Add embroider support by @simonihmig
+
 # 1.0.5 / 2020-07-01
 ==================
 
