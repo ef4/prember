@@ -199,7 +199,7 @@ You can use prember in an Embroider-based build, however you must apply some cha
 Embroider does not support the `postprocessTree` (type `all`) hook that this addon uses to *implicitly* hook into the build pipeline.
 But it exposes a `prerender` function to do so *explicitly*. 
 
-In a typical Embroider setup, your `ember-cli-build.js` will look like this:
+In a [typical Embroider setup](https://github.com/embroider-build/embroider), your `ember-cli-build.js` will look like this:
 
 ```js
 const { Webpack } = require('@embroider/webpack');
