@@ -87,7 +87,8 @@
     "configPath": "tests/dummy/config",
     "after": [
       "ember-cli-fastboot",
-      "ember-engines"
+      "ember-engines",
+      "ember-auto-import"
     ],
     "before": [
       "broccoli-asset-rev"
