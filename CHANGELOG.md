@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.1.1 - 2022-08-10
+
+BUGFIX: ensure we always run after ember-auto-import. As of ember-auto-import 2.0, things can break if we run before.
+
 ## 1.1.0 - 2021-12-23
 
 ENHANCEMENT: Add embroider support by @simonihmig

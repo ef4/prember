@@ -1,6 +1,6 @@
 {
   "name": "prember",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Prerender Ember apps using Fastboot at build time.",
   "keywords": [
     "ember-addon",
