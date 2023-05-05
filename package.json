@@ -27,7 +27,6 @@
     "broccoli-debug": "^0.6.3",
     "broccoli-merge-trees": "^4.2.0",
     "broccoli-plugin": "^4.0.7",
-    "denodeify": "^1.2.1",
     "chalk": "^4.0.0",
     "ember-cli-babel": "^7.26.11",
     "express": "^4.18.2",
