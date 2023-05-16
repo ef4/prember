@@ -1,10 +1,16 @@
 'use strict';
 
 const premberConfig = require('./lib/config');
+const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   name: require('./package').name,
   premberConfig,
+
+  included(app) {
+    this.fastbootOptions = fastbootOptionsFor(app.env, app.project);
+  },
 
   postprocessTree(type, tree) {
     if (type !== 'all') {
@@ -38,6 +44,8 @@ module.exports = {
     if (!config.enabled) {
       return tree;
     }
+
+    config.fastbootOptions = this.fastbootOptions;
 
     let Prerender = require('./lib/prerender');
     let BroccoliDebug = require('broccoli-debug');
@@ -95,4 +103,16 @@ function loadPremberPlugins(context) {
 
       return premberPlugin;
     });
+}
+
+function fastbootOptionsFor(environment, project) {
+  const configPath = path.join(
+    path.dirname(project.configPath()),
+    'fastboot.js'
+  );
+
+  if (fs.existsSync(configPath)) {
+    return require(configPath)(environment);
+  }
+  return {};
 }
