@@ -4,11 +4,8 @@ on:
   push:
     branches:
       - master
-    tags:
-      - '*'
+      - main
   pull_request:
-  schedule:
-    - cron:  '0 8 * * 1' # Mondays at 8am
 
 jobs:
   test:
@@ -17,17 +14,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 16
+          cache: pnpm
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm i --frozen-lockfile
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
       - name: Test
-        run: yarn test
+        run: pnpm test
 
   test-no-lock:
     name: Floating Dependencies
@@ -36,17 +37,19 @@ jobs:
       - test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 16
+          cache: pnpm
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
+        run: pnpm i --no-lockfile
       - name: Test
-        run: yarn test
+        run: pnpm test
 
   test-try:
     name: Additional Tests
@@ -66,12 +69,16 @@ jobs:
           - embroider-optimized
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 16
+          cache: pnpm
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm i --frozen-lockfile
       - name: Test
-        run: yarn ember try:one ${{ matrix.scenario }}
+        run: pnpm ember try:one ${{ matrix.scenario }}
