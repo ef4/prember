@@ -1,5 +1,5 @@
 const { execFileSync } = require('child_process');
-const { module: Qmodule, test } = require('qunitjs');
+const { module: Qmodule, test } = require('qunit');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const fs = require('fs');
@@ -12,7 +12,7 @@ function findDocument(filename) {
 Qmodule('Prember', function (hooks) {
   hooks.before(async function () {
     if (!process.env.REUSE_FASTBOOT_BUILD) {
-      execFileSync('node', ['./node_modules/.bin/ember', 'build']);
+      execFileSync('pnpm', ['ember', 'build']);
     }
     process.env.REUSE_FASTBOOT_BUILD = true;
   });
