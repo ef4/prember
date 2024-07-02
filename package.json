@@ -21,7 +21,7 @@
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
-    "test": "qunit node-tests"
+    "test": "qunit node-tests/*-test.js"
   },
   "dependencies": {
     "broccoli-debug": "^0.6.3",
@@ -73,7 +73,6 @@
     "prettier": "^2.3.2",
     "qunit": "^2.16.0",
     "qunit-dom": "^1.6.0",
-    "qunitjs": "^2.4.1",
     "webpack": "^5.59.0"
   },
   "engines": {
