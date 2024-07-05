@@ -1,0 +1,21 @@
+{
+  "solution": {
+    "prember": {
+      "impact": "minor",
+      "oldVersion": "2.0.0",
+      "newVersion": "2.1.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
+        }
+      ],
+      "pkgJSONPath": "./package.json"
+    }
+  },
+  "description": "## Release (2024-07-05)\n\nprember 2.1.0 (minor)\n\n#### :rocket: Enhancement\n* `prember`\n  * [#82](https://github.com/ef4/prember/pull/82) recycle the fastboot instance after 1k requests ([@mansona](https://github.com/mansona))\n\n#### :house: Internal\n* `prember`\n  * [#84](https://github.com/ef4/prember/pull/84) add release-plan ([@mansona](https://github.com/mansona))\n  * [#83](https://github.com/ef4/prember/pull/83) switch to pnpm and fix tests ([@mansona](https://github.com/mansona))\n\n#### Committers: 1\n- Chris Manson ([@mansona](https://github.com/mansona))\n"
+}

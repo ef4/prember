@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2024-07-05)
+
+prember 2.1.0 (minor)
+
+#### :rocket: Enhancement
+* `prember`
+  * [#82](https://github.com/ef4/prember/pull/82) recycle the fastboot instance after 1k requests ([@mansona](https://github.com/mansona))
+
+#### :house: Internal
+* `prember`
+  * [#84](https://github.com/ef4/prember/pull/84) add release-plan ([@mansona](https://github.com/mansona))
+  * [#83](https://github.com/ef4/prember/pull/83) switch to pnpm and fix tests ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
 # 1.1.1 - 2022-08-10
 
 BUGFIX: ensure we always run after ember-auto-import. As of ember-auto-import 2.0, things can break if we run before.
